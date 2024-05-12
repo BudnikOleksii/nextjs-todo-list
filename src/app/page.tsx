@@ -1,7 +1,20 @@
-export default function Home() {
+import AuthButton from '@/components/AuthButton';
+
+export default async function Index() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      TODO APP
-    </main>
+    <div className="flex-1 w-full flex flex-col gap-20 items-center">
+      <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
+        <AuthButton />
+      </nav>
+
+      <div className="animate-in flex-1 flex flex-col gap-20 opacity-0 max-w-4xl px-3">
+        HEADER
+        <main className="flex-1 flex flex-col gap-6">MAIN</main>
+      </div>
+
+      <footer className="w-full border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs">
+        FOOTER
+      </footer>
+    </div>
   );
 }
