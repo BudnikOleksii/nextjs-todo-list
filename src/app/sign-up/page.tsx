@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { signIn } from '@/actions';
+import { signUp } from '@/actions';
 import { AlertCustom } from '@/components/AlertCustom';
 import { HomeButton } from '@/components/HomeButton';
 import { PasswordInput } from '@/components/PasswordInput';
@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 import { PATHS } from '@/constants';
 import { type AuthPagesProps } from '@/types/auth-pages-props';
 
-export default function Login({ searchParams }: AuthPagesProps) {
+export default function SignUp({ searchParams }: AuthPagesProps) {
   const hasError = searchParams.error;
 
   return (
@@ -22,7 +22,7 @@ export default function Login({ searchParams }: AuthPagesProps) {
         <Input id="email" name="email" placeholder="you@example.com" required />
         <Label htmlFor="password">Password</Label>
         <PasswordInput id="password" name="password" placeholder="••••••••" required />
-        <SubmitButton formAction={signIn}>Sign In</SubmitButton>
+        <SubmitButton formAction={signUp}>Sign Up</SubmitButton>
         {searchParams.message && (
           <AlertCustom
             variant={hasError ? 'destructive' : 'default'}
@@ -31,7 +31,7 @@ export default function Login({ searchParams }: AuthPagesProps) {
           />
         )}
         <Button variant="link" type="button">
-          <Link href={PATHS.signUp}>Don't have an account? Sign Up</Link>
+          <Link href={PATHS.login}>Already have an account? Sign in</Link>
         </Button>
       </form>
     </div>
