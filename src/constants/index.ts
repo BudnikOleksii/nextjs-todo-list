@@ -1,7 +1,7 @@
 export const PATHS = {
   login: '/login',
   signUp: '/sign-up',
-  todos: '/protected', // TODO change to todos
+  todos: '/todos',
 } as const;
 
 export const ERROR_MESSAGE_MARK = 'error=true';

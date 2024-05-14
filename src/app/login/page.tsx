@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { signIn } from '@/actions';
-import { AlertCustom } from '@/components/AlertCustom';
-import { HomeButton } from '@/components/HomeButton';
-import { PasswordInput } from '@/components/PasswordInput';
-import { SubmitButton } from '@/components/SubmitButton';
+import { AlertCustom } from '@/components/alert-custom';
+import { HomeButton } from '@/components/home-button';
+import { PasswordInput } from '@/components/password-input';
+import { SubmitButton } from '@/components/submit-button';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';

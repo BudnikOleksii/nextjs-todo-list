@@ -26,3 +26,27 @@ export const signUp = async (formData: FormData) => {
 
   return redirect(`${PATHS.signUp}?message=Check email to continue sign in process'`);
 };
+
+export const signIn = async (formData: FormData) => {
+  const email = formData.get('email') as string;
+  const password = formData.get('password') as string;
+  const supabase = createClient();
+
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    const errorMessage = error.message || DEFAULT_AUTH_ERROR_MESSAGE;
+    return redirect(`${PATHS.login}?message=${errorMessage}&${ERROR_MESSAGE_MARK}`);
+  }
+
+  return redirect(PATHS.todos);
+};
+
+export const signOut = async () => {
+  const supabase = createClient();
+  await supabase.auth.signOut();
+  return redirect(PATHS.login);
+};

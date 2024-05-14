@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { signOut } from '@/actions';
+import { PATHS } from '@/constants';
 import { createClient } from '@/lib/utils/supabase/server';
 
 export default async function AuthButton() {
@@ -8,14 +9,6 @@ export default async function AuthButton() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-
-  const signOut = async () => {
-    'use server';
-
-    const supabase = createClient();
-    await supabase.auth.signOut();
-    return redirect('/login');
-  };
 
   return user ? (
     <div className="flex items-center gap-4">
@@ -28,7 +21,7 @@ export default async function AuthButton() {
     </div>
   ) : (
     <Link
-      href="/login"
+      href={PATHS.login}
       className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
     >
       Login

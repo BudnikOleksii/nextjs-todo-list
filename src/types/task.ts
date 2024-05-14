@@ -1,22 +1,6 @@
-export enum Status {
-  todo = 'todo',
-  inProgress = 'inProgress',
-  done = 'done',
-}
+import { type Database } from '@/types/database';
 
-export enum Priority {
-  low = 'low',
-  medium = 'medium',
-  high = 'high',
-}
+export type Status = Database['public']['Enums']['status'];
+export type Priority = Database['public']['Enums']['priority'];
 
-export interface Task {
-  id: number;
-  userId: string;
-  title: string;
-  description: string;
-  status: Status;
-  priority: Priority;
-  createdAt: Date;
-  deadline: Date;
-}
+export type Task = Database['public']['Tables']['tasks']['Row'];
