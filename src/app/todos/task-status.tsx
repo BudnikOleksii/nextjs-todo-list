@@ -17,7 +17,7 @@ interface Props {
 
 export const TaskStatus: FC<Props> = ({ currentStatus }) => {
   return (
-    <RadioGroup defaultValue={currentStatus}>
+    <RadioGroup defaultValue={currentStatus} className="flex items-center gap-2">
       {TASK_STATUSES.map((status) => (
         <div key={status} className="flex items-center space-x-2">
           <RadioGroupItem value={status} id={status} />

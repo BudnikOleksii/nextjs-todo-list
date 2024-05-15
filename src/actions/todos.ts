@@ -4,18 +4,10 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { PATHS } from '@/constants';
 import { createClient } from '@/lib/utils/supabase/server';
-import { type Priority } from '@/types/task';
+import { type NewTodo } from '@/validations/task';
 
 const supabase = createClient();
-export default async function addTodo(formData: FormData) {
-  const title = formData.get('title') as string;
-  const description = formData.get('description') as string;
-  const priority = formData.get('priority') as Priority;
-
-  if (!title) {
-    return;
-  }
-
+export default async function addTodo(newTodo: NewTodo) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -24,13 +16,14 @@ export default async function addTodo(formData: FormData) {
     return redirect(PATHS.login);
   }
 
-  const { data, error } = await supabase.from('tasks').insert({
+  const { error } = await supabase.from('tasks').insert({
     userId: user.id,
-    title,
-    description,
-    priority,
+    title: newTodo.title,
+    description: newTodo.description,
+    priority: newTodo.priority,
+    deadline: newTodo.deadline.toDateString(),
   });
-  console.log(data);
+  // TODO handle errors
   console.log(error);
 
   revalidatePath(PATHS.todos);

@@ -1,6 +1,14 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { TaskCard } from '@/app/todos/task-card';
+import { TaskRow } from '@/app/todos/task-row';
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import { PATHS } from '@/constants';
 import { createClient } from '@/lib/utils/supabase/server';
 
@@ -22,7 +30,19 @@ export default async function ProtectedPage() {
       {/*TODO: update UI for link*/}
       <Link href={PATHS.createTodo}>Create a new task</Link>
 
-      {tasks && tasks.map((task) => <TaskCard key={task.id} task={task} />)}
+      <Table className="border border-foreground/10 rounded">
+        <TableCaption>A list of your tasks.</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Status</TableHead>
+            <TableHead>Title</TableHead>
+            <TableHead>Description</TableHead>
+            <TableHead>Priority</TableHead>
+            <TableHead className="text-center">Deadline</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>{tasks && tasks.map((task) => <TaskRow key={task.id} task={task} />)}</TableBody>
+      </Table>
     </main>
   );
 }
