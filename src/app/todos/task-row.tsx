@@ -1,6 +1,9 @@
+import { EditIcon } from 'lucide-react';
 import { type FC } from 'react';
 import { ChangeStatusButton } from '@/app/todos/change-status-button';
+import DeleteTodoButton from '@/app/todos/delete-button';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { TableCell, TableRow } from '@/components/ui/table';
 import { type Priority, type Task } from '@/types/task';
 
@@ -30,6 +33,13 @@ export const TaskRow: FC<Props> = ({ task }) => {
         </Badge>
       </TableCell>
       <TableCell>{deadline}</TableCell>
+      <TableCell className="flex gap-1">
+        <DeleteTodoButton id={id} />
+
+        <Button variant="outline">
+          <EditIcon />
+        </Button>
+      </TableCell>
     </TableRow>
   );
 };

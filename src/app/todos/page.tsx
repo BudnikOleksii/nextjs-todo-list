@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { fetchTodos } from '@/actions';
+import { Filers } from '@/app/todos/filers';
 import { TaskRow } from '@/app/todos/task-row';
 import {
   Table,
@@ -22,9 +23,13 @@ export default async function Todos({ searchParams }: TodosPagesProps) {
   return (
     <main className="flex-1 flex flex-col gap-6">
       {/*TODO: update UI for link*/}
-      <Link href={PATHS.createTodo}>Create a new task</Link>
+      <Link className="mx-auto" href={PATHS.createTodo}>
+        Create a new task
+      </Link>
 
-      <Table className="border border-foreground/10 rounded">
+      <Filers />
+
+      <Table className="border border-foreground/10 rounded min-w-[600px]">
         <TableCaption>A list of your tasks.</TableCaption>
         <TableHeader>
           <TableRow>
@@ -33,6 +38,7 @@ export default async function Todos({ searchParams }: TodosPagesProps) {
             <TableHead>Description</TableHead>
             <TableHead>Priority</TableHead>
             <TableHead className="text-center">Deadline</TableHead>
+            <TableHead className="text-center">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
