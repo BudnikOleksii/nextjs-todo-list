@@ -5,32 +5,32 @@ export interface Database {
     Tables: {
       tasks: {
         Row: {
+          completed: boolean;
           created_at: string;
           deadline: string | null;
           description: string;
           id: number;
           priority: Database['public']['Enums']['priority'];
-          status: Database['public']['Enums']['status'];
           title: string;
           userId: string;
         };
         Insert: {
+          completed?: boolean;
           created_at?: string;
           deadline?: string | null;
           description: string;
           id?: number;
           priority?: Database['public']['Enums']['priority'];
-          status?: Database['public']['Enums']['status'];
           title: string;
           userId: string;
         };
         Update: {
+          completed?: boolean;
           created_at?: string;
           deadline?: string | null;
           description?: string;
           id?: number;
           priority?: Database['public']['Enums']['priority'];
-          status?: Database['public']['Enums']['status'];
           title?: string;
           userId?: string;
         };

@@ -1,4 +1,5 @@
 import { type FC } from 'react';
+import { ChangeStatusButton } from '@/app/todos/change-status-button';
 import { Badge } from '@/components/ui/badge';
 import { TableCell, TableRow } from '@/components/ui/table';
 import { type Priority, type Task } from '@/types/task';
@@ -14,11 +15,13 @@ interface Props {
 }
 
 export const TaskRow: FC<Props> = ({ task }) => {
-  const { priority, title, status, description, deadline } = task;
+  const { id, priority, title, completed, description, deadline } = task;
 
   return (
     <TableRow>
-      <TableCell className="font-medium">{status}</TableCell>
+      <TableCell className="flex justify-center items-center px-0">
+        <ChangeStatusButton id={id} isCompleted={completed} />
+      </TableCell>
       <TableCell>{title}</TableCell>
       <TableCell>{description}</TableCell>
       <TableCell>

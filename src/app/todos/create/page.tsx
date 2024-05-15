@@ -5,7 +5,7 @@ import { CalendarIcon, LoaderIcon } from 'lucide-react';
 import { useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import { type z } from 'zod';
-import addTodo from '@/actions/todos';
+import { addTodo } from '@/actions';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import {
