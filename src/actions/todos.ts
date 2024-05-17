@@ -8,9 +8,9 @@ import { type Task } from '@/types/task';
 import { type TodosQueryParams } from '@/types/todos-query-params';
 import { type NewTodo } from '@/validations/task';
 
-const supabase = createClient();
-
 export const fetchTodos = async (params: TodosQueryParams) => {
+  const supabase = createClient();
+
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -38,6 +38,8 @@ export const fetchTodos = async (params: TodosQueryParams) => {
 };
 
 export const addTodo = async (newTodo: NewTodo) => {
+  const supabase = createClient();
+
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -61,6 +63,8 @@ export const addTodo = async (newTodo: NewTodo) => {
 };
 
 export const updateTodo = async (id: number, todoFields: Partial<Task>) => {
+  const supabase = createClient();
+
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -77,6 +81,8 @@ export const updateTodo = async (id: number, todoFields: Partial<Task>) => {
 };
 
 export const deleteTodo = async (todoId: number) => {
+  const supabase = createClient();
+
   const { data, error } = await supabase.from('tasks').delete().eq('id', todoId);
 
   if (error) {
