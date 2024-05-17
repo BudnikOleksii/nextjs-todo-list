@@ -1,6 +1,6 @@
 'use client';
 
-import { LoaderIcon, TrashIcon } from 'lucide-react';
+import { LoaderIcon } from 'lucide-react';
 import { useTransition } from 'react';
 import { deleteTodo } from '@/actions';
 import { Button } from '@/components/ui/button';
@@ -19,8 +19,8 @@ export const DeleteTodoButton: React.FC<Props> = ({ id }) => {
   };
 
   return (
-    <Button onClick={() => handleDeleteTodo(id)} variant="outline" disabled={isPending}>
-      {isPending ? <LoaderIcon className="animate-spin" /> : <TrashIcon />}
+    <Button onClick={() => handleDeleteTodo(id)} variant="destructive" disabled={isPending}>
+      {isPending ? <LoaderIcon className="animate-spin" /> : 'Confirm'}
     </Button>
   );
 };
