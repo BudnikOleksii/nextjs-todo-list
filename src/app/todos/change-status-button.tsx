@@ -14,7 +14,5 @@ export const ChangeStatusButton: FC<Props> = ({ id, isCompleted }) => {
     await updateTodo(id, { completed: checked });
   };
 
-  return (
-    <Checkbox id={`task-${id}`} onCheckedChange={handleStatusChange} defaultChecked={isCompleted} />
-  );
+  return <Checkbox id={`task-${id}`} onCheckedChange={handleStatusChange} checked={isCompleted} />;
 };
