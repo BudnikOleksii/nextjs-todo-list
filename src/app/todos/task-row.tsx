@@ -5,6 +5,7 @@ import DeleteTodoButton from '@/app/todos/delete-button';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { TableCell, TableRow } from '@/components/ui/table';
+import { formatDate } from '@/lib/utils';
 import { type Priority, type Task } from '@/types/task';
 
 const priorityBadgeVariantMap: { [key in Priority]: 'secondary' | 'default' | 'destructive' } = {
@@ -27,13 +28,13 @@ export const TaskRow: FC<Props> = ({ task }) => {
       </TableCell>
       <TableCell>{title}</TableCell>
       <TableCell>{description}</TableCell>
-      <TableCell>
+      <TableCell className="flex justify-center">
         <Badge variant={priorityBadgeVariantMap[priority]} className="capitalize">
           {priority}
         </Badge>
       </TableCell>
-      <TableCell>{deadline}</TableCell>
-      <TableCell className="flex gap-1">
+      <TableCell className="text-center">{formatDate(deadline)}</TableCell>
+      <TableCell className="flex gap-1 justify-center">
         <DeleteTodoButton id={id} />
 
         <Button variant="outline">

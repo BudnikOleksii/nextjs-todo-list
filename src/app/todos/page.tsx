@@ -21,7 +21,7 @@ export default async function Todos({ searchParams }: TodosPagesProps) {
   const tasks = await fetchTodos(searchParams);
 
   return (
-    <main className="flex-1 flex flex-col gap-6">
+    <main className="flex-1 flex flex-col gap-6 container">
       {/*TODO: update UI for link*/}
       <Link className="mx-auto" href={PATHS.createTodo}>
         Create a new task
@@ -36,7 +36,7 @@ export default async function Todos({ searchParams }: TodosPagesProps) {
             <TableHead className="text-center">Status</TableHead>
             <TableHead>Title</TableHead>
             <TableHead>Description</TableHead>
-            <TableHead>Priority</TableHead>
+            <TableHead className="text-center">Priority</TableHead>
             <TableHead className="text-center">Deadline</TableHead>
             <TableHead className="text-center">Actions</TableHead>
           </TableRow>

@@ -20,7 +20,7 @@ export const fetchTodos = async (params: TodosQueryParams) => {
   }
 
   const { order, status, sortType, priority } = params;
-  const ascending = order === 'asc';
+  const descending = order === 'desc';
   const sort = sortType || 'created_at';
   const statusCompleted = status === 'completed';
 
@@ -28,7 +28,7 @@ export const fetchTodos = async (params: TodosQueryParams) => {
   const queryWithStatus = status ? query.eq('completed', statusCompleted) : query;
   const queryWithPriority = priority ? queryWithStatus.eq('priority', priority) : queryWithStatus;
 
-  const { data: tasks, error } = await queryWithPriority.order(sort, { ascending });
+  const { data: tasks, error } = await queryWithPriority.order(sort, { ascending: !descending });
 
   if (error) {
     throw error;
@@ -72,13 +72,12 @@ export const updateTodo = async (id: number, todoFields: Partial<Task>) => {
   const { error } = await supabase.from('tasks').update(todoFields).eq('id', id);
   // TODO handle errors
   console.log(error);
+
+  revalidatePath(PATHS.todos);
 };
 
 export const deleteTodo = async (todoId: number) => {
   const { data, error } = await supabase.from('tasks').delete().eq('id', todoId);
-
-  console.log('data', data);
-  console.log('error', error);
 
   if (error) {
     console.error('Error deleting todo:', error);

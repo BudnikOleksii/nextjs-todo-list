@@ -7,7 +7,7 @@ export interface Database {
         Row: {
           completed: boolean;
           created_at: string;
-          deadline: string | null;
+          deadline: string;
           description: string;
           id: number;
           priority: Database['public']['Enums']['priority'];
@@ -17,7 +17,7 @@ export interface Database {
         Insert: {
           completed?: boolean;
           created_at?: string;
-          deadline?: string | null;
+          deadline?: string;
           description: string;
           id?: number;
           priority?: Database['public']['Enums']['priority'];
@@ -27,7 +27,7 @@ export interface Database {
         Update: {
           completed?: boolean;
           created_at?: string;
-          deadline?: string | null;
+          deadline?: string;
           description?: string;
           id?: number;
           priority?: Database['public']['Enums']['priority'];
