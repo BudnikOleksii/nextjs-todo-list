@@ -1,6 +1,6 @@
 'use client';
 
-import { type FC } from 'react';
+import { type FC, useTransition } from 'react';
 import { updateTodo } from '@/actions';
 import { Checkbox } from '@/components/ui/checkbox';
 
@@ -10,9 +10,20 @@ interface Props {
 }
 
 export const ChangeStatusButton: FC<Props> = ({ id, isCompleted }) => {
+  const [isPending, startTransition] = useTransition();
+
   const handleStatusChange = async (checked: boolean) => {
-    await updateTodo(id, { completed: checked });
+    startTransition(async () => {
+      await updateTodo(id, { completed: checked });
+    });
   };
 
-  return <Checkbox id={`task-${id}`} onCheckedChange={handleStatusChange} checked={isCompleted} />;
+  return (
+    <Checkbox
+      id={`task-${id}`}
+      onCheckedChange={handleStatusChange}
+      checked={isCompleted}
+      disabled={isPending}
+    />
+  );
 };
